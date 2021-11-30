@@ -1,0 +1,36 @@
+*{
+  padding: 0;
+  margin: 0;
+  font-family: 'Lobster', cursive;
+}
+
+.loader{
+  display: flex;
+  justify-content:  center;
+  align-items: center;
+  height: 70vh;
+  /* background-image: url(./assets/loader.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover; */
+}
+
+.home-component{
+  text-align: center;
+  width: 75%;
+  margin: auto;
+}
+
+.home-component .jokes{
+  height: 500px
+}
+
+nav .logo {
+  height: 150px;
+  width: auto;
+}
+
+footer{
+  text-align: center;
+  height: 180px;
+}
