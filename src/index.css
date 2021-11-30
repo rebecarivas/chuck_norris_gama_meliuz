@@ -1,36 +1,58 @@
 *{
   padding: 0;
   margin: 0;
-  font-family: 'Lobster', cursive;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #252525;
+  color: #f1f1f1;
 }
 
 .loader{
   display: flex;
   justify-content:  center;
   align-items: center;
-  height: 70vh;
-  /* background-image: url(./assets/loader.gif);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover; */
+  height: 70vh; 
 }
 
 .home-component{
   text-align: center;
-  width: 75%;
+  width: 100%;
   margin: auto;
+  color: white;
 }
 
 .home-component .jokes{
-  height: 500px
+  height: 400px
 }
 
-nav .logo {
-  height: 150px;
+.jokes{
+  text-align: center;
+  margin: auto;
+}
+
+form, h1, h3 {
+  padding: 20px;
+}
+
+.button{
+  padding: 20px;
+}
+
+.icon{
+  margin: auto;
+  /*padding-bottom: 10px;*/
+}
+
+nav{
+  height: 90px;
+  width: auto;
+}
+
+.logo{
+  height: 90px;
   width: auto;
 }
 
 footer{
   text-align: center;
-  height: 180px;
+  height: 50px;
 }

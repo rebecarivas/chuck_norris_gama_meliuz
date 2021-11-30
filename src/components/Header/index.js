@@ -4,11 +4,9 @@ import {
   Grid,
   GridItem,
   Container,
-  FormControl,
-  FormLabel,
   Select
 }  from '@chakra-ui/react'
-import Logo from '../../assets/logo.jpeg';
+import Logo from '../../assets/logo.png';
 
 import api from '../../services/api'
 
@@ -31,21 +29,19 @@ const Header = () => {
   return(
     <nav>
       <Container maxW="container.xl">
-        <Grid templateColumns="repeat(5, 1fr)" gap={10}>
+        <Grid  templateColumns="repeat(5, 1fr)" gap={10}>
           <GridItem colStart={1}>
             <Link to='/'>
               <img src={Logo} className="logo" alt="Logo" />
             </Link>
           </GridItem>
-          <GridItem colStart={6} colEnd={12} h="150px">
-            <FormControl>
-              <FormLabel>Selecione a categoria de sua piada</FormLabel>
-              <Select onChange={handleCategory}>
+          <GridItem  colStart={6} colEnd={12} h="150px">
+              <Select  pt={10} placeholder="Selecione a categoria" focusBorderColor="white" onChange={handleCategory}>
                 {main?.map( (item, index) => (
                   <option key={index} value={item}> {item} </option>
                 ))}
               </Select>
-            </FormControl>
+        
           </GridItem>
         </Grid>
       </Container>

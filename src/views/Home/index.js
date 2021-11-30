@@ -1,16 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react'
+import { Input, Button, Text, Box} from '@chakra-ui/react'
+import api from '../../services/api'
+import loader from '../../assets/loader.gif'
 
-import {
-  FormLabel,
-  Input,
-  Button
-} from '@chakra-ui/react'
-
-import api from '../../services/api';
-
-import Loader from '../../assets/loader.gif'
-
-const App = () => {
+const App = () =>{
   const [data, setData] = useState({});
   const [allJokes, setAllJokes] = useState({});
   const [isSearch, setIsSearch] = useState(false);
@@ -19,15 +12,14 @@ const App = () => {
 
   useEffect(() => {
     setIsLoad(true)
-    api.get('random').then(
+    api.get('random')
+    .then(
       response => {
         setData(response.data)
       }
     )
-    .catch( e => console.error(e))
-    .finally( () => setTimeout(() => {
-      setIsLoad(false)
-    }, 2500))
+    .catch(e => console.error(e))
+    .finally(() => setTimeout(() =>{setIsLoad(false)},2500))
   }, [])
 
   const handleSubmit = (e) => {
@@ -43,28 +35,34 @@ const App = () => {
     .finally( () => setIsLoad(false))
   }
 
-  if(isLoad) {
+  if (isLoad){
     return(
       <div className="loader">
-        <img src={Loader} alt="Loader" />
+        <img src={loader} alt="Loader"/>
       </div>
     )
   }
 
-  return(
+   return(
     <div className="home-component">
-      <h1>Joke</h1>
+      
       <div>
         <form onSubmit={handleSubmit}>
-          <FormLabel>Pesquise sua piada</FormLabel>
-          <Input type="text" onChange={e => setSearchJoke(e.target.value)} />
-          <Button type="submit">Pesquisar</Button>
+          <Input focusBorderColor="white" type="text" placeholder="Pesquise sua piada" onChange={e => setSearchJoke(e.target.value)} />
+          <Button marginTop="10px" className="button" type="submit" colorScheme="#f2f2f2" variant="outline">Pesquisar</Button>
         </form>
+        <Text fontSize="4xl" fontWeight="bold"  letterSpacing="10px" color="#f1f1f1"> 
+          <h1>Joke</h1>
+        </Text>
       </div>
       { !isSearch ? (
         <div className="jokes">
-          <img src={data?.icon_url} alt={data?.value} />
-          <h3>{data?.value}</h3>
+          <img className="icon" src={data?.icon_url} alt={data?.value} />
+          <Box w="80%" borderWidth="2px" borderRadius="10px" margin="auto" paddingTop="5px">
+            <Text fontSize="2xl">
+              <h3>{data?.value}</h3>
+            </Text>
+          </Box>
         </div>
       ) : (
         <>
@@ -80,4 +78,6 @@ const App = () => {
   )
 }
 
-export default App
+export default App;
+//essa funcao é assincrona. eu to atribuindo a data a toda a api do chuck norris e o data.icon_url é atribuida pq é um obejto se der o console.log em response ou data da pra ver
+
