@@ -1,6 +1,7 @@
 
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './views/Home'; //nao precisa colocar o nome do arquivo, ele peaga auto o index.js
+import Categories from './views/Categories';
 import Error404 from './views/Error';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,6 +12,7 @@ const RouteComponent = () =>{
             <Header />
             <Routes>
                 <Route path='/' element={<Home />} />
+                <Route path="/categories/:category" element={<Categories />} />
                 <Route path='*' element={<Error404 />} /> 
             </Routes>
             <Footer />
