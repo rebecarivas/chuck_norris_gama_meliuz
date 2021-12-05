@@ -29,11 +29,7 @@
   margin: auto;
 }
 
-form, h1, h3 {
-  padding: 20px;
-}
-
-.button{
+form, .button {
   padding: 20px;
 }
 

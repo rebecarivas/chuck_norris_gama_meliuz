@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { Input, Button, Text, Box} from '@chakra-ui/react'
+import { Input, InputGroup, Button, Text, Box, InputRightElement} from '@chakra-ui/react'
 import api from '../../services/api'
-import loader from '../../assets/loader.gif'
+import loader from '../../assets/carregando.gif'
 
 const App = () =>{
   const [data, setData] = useState({});
@@ -10,7 +10,7 @@ const App = () =>{
   const [isLoad, setIsLoad] = useState(false);
   const [searchJoke, setSearchJoke] = useState('');
 
-  useEffect(() => {
+  useEffect(() => { //método assíncrono de invocar a api. passa o sufixo /random da url
     setIsLoad(true)
     api.get('random')
     .then(
@@ -19,7 +19,7 @@ const App = () =>{
       }
     )
     .catch(e => console.error(e))
-    .finally(() => setTimeout(() =>{setIsLoad(false)},2500))
+    .finally(() => setTimeout(() =>{setIsLoad(false)},2500)) //dando erro ou nao é executado o finally
   }, [])
 
   const handleSubmit = (e) => {
@@ -35,7 +35,7 @@ const App = () =>{
     .finally( () => setIsLoad(false))
   }
 
-  if (isLoad){
+  if (isLoad){ //se o isLoad for true, vai rendereizar essa div e nao renderiza o return
     return(
       <div className="loader">
         <img src={loader} alt="Loader"/>
@@ -48,10 +48,14 @@ const App = () =>{
       
       <div>
         <form onSubmit={handleSubmit}>
-          <Input focusBorderColor="white" type="text" placeholder="Pesquise sua piada" onChange={e => setSearchJoke(e.target.value)} />
-          <Button marginTop="10px" className="button" type="submit" colorScheme="#f2f2f2" variant="outline">Pesquisar</Button>
+          <InputGroup>
+             <Input margin-="auto" focusBorderColor="white" type="text" placeholder="Pesquise sua piada" onChange={e => setSearchJoke(e.target.value)} />
+            <InputRightElement width="100px">
+              <Button className="button" type="submit" colorScheme="#f2f2f2" variant="outline">Pesquisar</Button>
+            </InputRightElement>
+          </InputGroup>
         </form>
-        <Text fontSize="4xl" fontWeight="bold"  letterSpacing="10px" color="#f1f1f1"> 
+        <Text fontSize="4xl" fontWeight="bold"  letterSpacing="10px" color="#f1f1f1" p="20px"> 
           <h1>Joke</h1>
         </Text>
       </div>
@@ -68,8 +72,12 @@ const App = () =>{
         <>
           { allJokes?.result.map( (item, index) => (
             <div key={index} className="jokes">
-              <img src={item?.icon_url} alt={item?.value} />
-              <h3>{item?.value}</h3>
+              <img className="icon" src={item?.icon_url} alt={item?.value} />
+              <Box w="80%" borderWidth="2px" borderRadius="10px" margin="auto" paddingTop="5px">
+                 <Text fontSize="2xl">
+                    <h3>{item?.value}</h3>
+                  </Text>
+              </Box>
             </div>
           ))}
         </>

@@ -23,7 +23,7 @@ const Header = () => {
   }, [])
 
   const handleCategory = (e) => {
-    navigate(`/categories/${e.target.value}`)
+    navigate(`/categories/${e.target.value}`)//usa o target pq foi verificar no console.log
   }
 
   return(
@@ -36,7 +36,7 @@ const Header = () => {
             </Link>
           </GridItem>
           <GridItem  colStart={6} colEnd={12} h="150px">
-              <Select  pt={10} placeholder="Selecione a categoria" focusBorderColor="white" onChange={handleCategory}>
+              <Select  pt={10}  mr={10} size="md"  placeholder="Selecione a categoria" focusBorderColor="white" onChange={handleCategory}>
                 {main?.map( (item, index) => (
                   <option key={index} value={item}> {item} </option>
                 ))}
